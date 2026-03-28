@@ -10,8 +10,8 @@ app.use((req, res, next) => {
   next();
 });
 
-const BOT_TOKEN = 8546920124:AAGamyVGi91xZ3Y6fZqJp0RRCXEU8apGP3s;
-const CHAT_ID   = 5857451420;
+const BOT_TOKEN = process.env.BOT_TOKEN;
+const CHAT_ID   = process.env.CHAT_ID;
 
 const responses = [];
 
