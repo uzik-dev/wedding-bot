@@ -1,18 +1,30 @@
-document.getElementById('rsvpForm').addEventListener('submit', async (e) => {
-  e.preventDefault();
-  const data = {
-    name:        document.getElementById('name').value,
-    attend:      document.querySelector('input[name="attend"]:checked')?.value,
-    plusone:     document.querySelector('input[name="plusone"]:checked')?.value,
-    partnerName: document.getElementById('partnerName').value,
-    wish:        document.getElementById('wish').value,
-  };
+const express = require('express');
+const path = require('path');
 
-  await fetch('https://твой-сервер.railway.app/rsvp', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify(data)
-  });
+const app = express();
+const PORT = process.env.PORT || 3000;
 
-  // дальше показываешь success как раньше
+// Middleware
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+app.use(express.static(path.join(__dirname, 'public')));
+
+// RSVP endpoint
+app.post('/rsvp', (req, res) => {
+  const { name, attend, plusone, partnerName, wish } = req.body;
+
+  console.log('New RSVP received:', { name, attend, plusone, partnerName, wish });
+
+  // TODO: persist the RSVP (database, Google Sheets, Telegram bot, etc.)
+
+  res.json({ ok: true });
+});
+
+// Serve the frontend for all other routes
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'index.html'));
+});
+
+app.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`);
 });

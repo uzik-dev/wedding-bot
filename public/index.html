@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>RSVP</title>
+</head>
+<body>
+  <form id="rsvpForm">
+    <label>
+      Имя:
+      <input type="text" id="name" name="name" required />
+    </label>
+
+    <fieldset>
+      <legend>Придёте?</legend>
+      <label><input type="radio" name="attend" value="yes" required /> Да</label>
+      <label><input type="radio" name="attend" value="no" /> Нет</label>
+    </fieldset>
+
+    <fieldset>
+      <legend>Придёте с партнёром?</legend>
+      <label><input type="radio" name="plusone" value="yes" /> Да</label>
+      <label><input type="radio" name="plusone" value="no" /> Нет</label>
+    </fieldset>
+
+    <label>
+      Имя партнёра:
+      <input type="text" id="partnerName" name="partnerName" />
+    </label>
+
+    <label>
+      Пожелание:
+      <textarea id="wish" name="wish"></textarea>
+    </label>
+
+    <button type="submit">Отправить</button>
+  </form>
+
+  <div id="success" style="display:none;">
+    <p>Спасибо! Ваш ответ принят.</p>
+  </div>
+
+  <script src="/client.js"></script>
+</body>
+</html>
